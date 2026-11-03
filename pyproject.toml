@@ -1,0 +1,34 @@
+[project]
+name = "pfeed-hyperliquid"
+version = "0.0.1"
+description = "Hyperliquid data source plugin for pfeed: historical and live market data from Hyperliquid."
+readme = "README.md"
+authors = [
+    { name = "softwareentrepreneer", email = "softwareentrepreneer+pfeed-hyperliquid@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pfeed>=0.0.20",
+    # "pfund-hyperliquid>=0.0.1.dev1"
+]
+
+[project.entry-points."pfeed.sources"]
+hyperliquid = "pfeed_hyperliquid:Hyperliquid"
+
+[tool.uv]
+# FIXME: set it back to "14 days" when the package is stable
+exclude-newer = "0 days"
+exclude-newer-package = { uv_build = false, pfund-blocks = false, pfund-kit = false, pfeed = false }
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.pytest]
+markers = [
+    "network: Run tests that call Bybit's real servers",
+    "rate_limit: Run tests that can be rate-limited",
+]
+strict_markers = true
+addopts = ["--import-mode=importlib"]
+testpaths = ["tests"]
