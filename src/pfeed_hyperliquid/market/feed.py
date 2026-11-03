@@ -15,7 +15,7 @@ from pfeed.market.requests.stream_request import MarketFeedStreamRequest
 from pfeed.streaming.market import MarketFeedStreamingMixin
 
 
-class BybitMarketFeed(
+class HyperliquidMarketFeed(
     MarketFeedStreamingMixin[MarketFeedStreamRequest, MarketDataModel],
     pe.MarketFeed["Hyperliquid", "MarketFeedBaseRequest", MarketDataModel]
 ):
